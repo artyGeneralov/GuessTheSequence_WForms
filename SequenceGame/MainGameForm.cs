@@ -46,6 +46,7 @@ namespace GameSetupForm
                 toggleGuessesInRow(MainGameController.currentRow);
                 toggleSubmitInRow(MainGameController.currentRow, false);
                 colorSolutionButtons();
+                restartOrQuit();
             }
             else if(MainGameController.CheckWin() == false && MainGameController.currentRow != MainGameController.MaxChances)
             {
@@ -59,8 +60,22 @@ namespace GameSetupForm
             {
                 toggleGuessesInRow(MainGameController.currentRow);
                 toggleSubmitInRow(MainGameController.currentRow, false);
+                restartOrQuit();
             }
             MainGameController.ClearCurrentGuess();
+        }
+
+        private void restartOrQuit()
+        {
+            DialogResult dialogResult = MessageBox.Show("Do you want to restart or quit?", "Restart or Quit", MessageBoxButtons.RetryCancel);
+            if (dialogResult == DialogResult.Retry)
+            {
+                Application.Restart();
+            }
+            else if (dialogResult == DialogResult.Cancel)
+            {
+                Application.Exit();
+            }
         }
 
         private void colorSolutionButtons()
